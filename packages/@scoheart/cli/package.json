@@ -1,6 +1,6 @@
 {
   "name": "@scoheart/cli",
-  "version": "0.0.1",
+  "version": "0.0.5",
   "description": "",
   "main": "index.js",
   "type": "module",
@@ -17,5 +17,11 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scoheartjs/scoheart-cli.git",
+    "directory": "packages/scoheart-cli"
+  },
+  "homepage": "https://github.com/scoheartjs/scoheart-cli/tree/main/packages/@scoheart/cli"
 }
