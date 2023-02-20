@@ -1,6 +1,6 @@
 {
   "name": "@scoheart/cli",
-  "version": "0.0.5",
+  "version": "0.0.7",
   "description": "",
   "main": "index.js",
   "type": "module",
@@ -23,5 +23,5 @@
     "url": "https://github.com/scoheartjs/scoheart-cli.git",
     "directory": "packages/scoheart-cli"
   },
-  "homepage": "https://github.com/scoheartjs/scoheart-cli/tree/main/packages/@scoheart/cli"
+  "homepage": "https://github.com/scoheartjs/scoheart-cli/tree/main/packages/@scoheart/cli#readme"
 }

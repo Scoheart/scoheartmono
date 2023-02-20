@@ -5,7 +5,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import prompts from 'prompts'
 import minimist from 'minimist'
-import { red, reset, blue, green, yellow } from 'kolorist'
+import { red, reset, blue, green, yellow, magenta } from 'kolorist'
 
 const argv = minimist(process.argv.slice(2))
 const cwd = process.cwd()
@@ -82,6 +82,12 @@ const framework = [
                 displayColor: blue
             }
         ]
+    },
+    {
+        name: "sco-vanilla",
+        display: "Sco-vanilla",
+        displayColor: magenta,
+        variant: null
     }
 ]
 
@@ -101,13 +107,13 @@ const questions = [
         type: () => fs.existsSync(projectName) ? "confirm" : null,
         name: "overwrite",
         message: () => (projectName === '.'
-        ? 'Current directory'
-        : `Target directory "${projectName}"`) +
-        ` is not empty. Remove existing files and continue?`
+            ? 'Current directory'
+            : `Target directory "${projectName}"`) +
+            ` is not empty. Remove existing files and continue?`
     },
     {
         type: (overwrite) => {
-            if (overwrite === false){
+            if (overwrite === false) {
                 throw new Error(red('✖') + ' Operation cancelled');
             }
             return null;
@@ -115,7 +121,7 @@ const questions = [
         name: "overwriteChecker"
     },
     {
-        type: "select", 
+        type: "select",
         name: "framework",
         message: "Select a framework",
         choices: framework.map((framework) => {
@@ -124,10 +130,9 @@ const questions = [
                 value: framework
             }
         }),
-        
     },
     {
-        type: 'select', 
+        type: (framework) => framework.variant === null ? null : 'select',
         name: "variant",
         message: "Select a variant",
         choices: (framework) => framework.variant.map((variant) => {
@@ -135,52 +140,52 @@ const questions = [
                 title: variant.displayColor(variant.display),
                 value: variant
             }
-        })  
+        })
     }
 ]
 
-;(async function () {
-    let result
-    try {
-        result = await prompts(questions, {
-            onCancel: () => {
-                throw new Error(red('✖') + ' Operation cancelled');
-            }
+    ; (async function () {
+        let result
+        try {
+            result = await prompts(questions, {
+                onCancel: () => {
+                    throw new Error(red('✖') + ' Operation cancelled');
+                }
+            })
+        } catch (error) {
+            console.log(error.message)
+            return
+        }
+
+        const { project, overwrite, framework, variant } = result
+        const projectPath = result.project ? path.join(cwd, project) : path.join(cwd, argProjectName)
+        const selectedTemplateDirectory = path.join(templatesDirectory, framework.name, variant.name)
+
+        if (overwrite) {
+            removeOldDir(projectPath)
+        }
+
+        fs.cpSync(selectedTemplateDirectory, projectPath, {
+            recursive: true
         })
-    } catch (error) {
-        console.log(error.message)
-        return
-    }
-    
-    const {project, overwrite, framework, variant} = result
-    const projectPath = result.project ? path.join(cwd, project) : path.join(cwd, argProjectName)
-    const selectedTemplateDirectory = path.join(templatesDirectory, framework.name, variant.name)
 
-    if (overwrite){
-        removeOldDir(projectPath)
-    }
+        console.log(`\nScaffolding project in ${projectPath}\n`)
 
-    fs.cpSync(selectedTemplateDirectory, projectPath, {
-        recursive: true
-    })
+        console.log(`\nDone. Now run:\n`);
+        console.log(`  cd ${projectName}`)
+        console.log(`  npm install`)
+        console.log(`  npm run dev`)
 
-    console.log(`\nScaffolding project in ${projectPath}\n`)
-
-    console.log(`\nDone. Now run:\n`);
-    console.log(`  cd ${projectName}`)
-    console.log(`  npm install`)
-    console.log(`  npm run dev`)
-
-})();
+    })();
 
 function removeOldDir(oldDirPath) {
     let oldDir = fs.readdirSync(oldDirPath)
     for (let index = 0; index < oldDir.length; index++) {
         let oldFiles = path.join(oldDirPath, oldDir[index])
         let stat = fs.statSync(oldFiles)
-        if(stat.isDirectory()){
+        if (stat.isDirectory()) {
             removeOldDir(oldFiles)
-        }else {
+        } else {
             fs.unlinkSync(oldFiles)
         }
     }
