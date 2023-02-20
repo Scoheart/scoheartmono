@@ -1,0 +1,21 @@
+{
+  "name": "@scoheart/cli",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "bin": {
+    "scoheart": "bin/scoheart.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "kolorist": "^1.7.0",
+    "minimist": "^1.2.7",
+    "prompts": "^2.4.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
