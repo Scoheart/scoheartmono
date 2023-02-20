@@ -156,10 +156,10 @@ const questions = [
             console.log(error.message)
             return
         }
-
         const { project, overwrite, framework, variant } = result
         const projectPath = result.project ? path.join(cwd, project) : path.join(cwd, argProjectName)
-        const selectedTemplateDirectory = path.join(templatesDirectory, framework.name, variant.name)
+        const selectedTemplateDirectory = 
+        typeof variant === "undefined" ? path.join(templatesDirectory, framework.name) : path.join(templatesDirectory, framework.name, variant.name)
 
         if (overwrite) {
             removeOldDir(projectPath)
