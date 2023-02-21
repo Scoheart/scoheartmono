@@ -1,16 +1,17 @@
 {
-  "name": "@scoheart/axios",
-  "version": "0.0.1",
+  "name": "scoheart-demo",
+  "version": "1.0.0",
   "description": "",
-  "main": "./dist/axios.js",
+  "main": "index.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
-  "publishConfig": {
-    "access": "public"
+  "dependencies": {
+    "@scoheart/axios": "workspace:^0.0.1"
   },
   "devDependencies": {
     "vite": "^4.1.3"
