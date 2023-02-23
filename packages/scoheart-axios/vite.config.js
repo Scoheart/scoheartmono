@@ -3,7 +3,7 @@ import {defineConfig} from 'vite'
 export default defineConfig({
     build: {
         lib: {
-            entry: "./lib/axios.js",
+            entry: "./index.js",
             name: "a",
             fileName: "axios"
         }
