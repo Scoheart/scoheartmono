@@ -1,8 +1,7 @@
-# scoheart-cli
-
-> usage:
+# @scoheart/cli
 
 ```shell
+$ npm install @scoheat/cli
 $ scoheart [projectName]
 ```
 
