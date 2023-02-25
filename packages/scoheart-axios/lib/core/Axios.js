@@ -22,9 +22,9 @@ Axios.prototype.get = function () {
     console.log("get method")
 }
 
-// Axios.prototype.post = () => {
-//     console.log("post method")
-// }
+Axios.prototype.post = () => {
+    console.log("post method")
+}
 
 // class Axios {
 //     constructor(defaultConfig) {

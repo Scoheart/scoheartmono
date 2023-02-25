@@ -1,9 +1,8 @@
 {
-  "name": "scoheart-demo",
+  "name": "demo",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,11 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@scoheart/axios": "workspace:^0.0.1",
-    "@scoheart/cli": "workspace:^0.0.7",
-    "@scoheart/vue": "workspace:^1.0.0"
-  },
-  "devDependencies": {
-    "vite": "^4.1.3"
+    "@scoheart/cli": "workspace:^0.0.7"
   }
 }

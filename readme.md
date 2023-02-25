@@ -2,6 +2,8 @@
 this is my monorepo demo
 
 project include:
+* @scoheart/axios
 * @scoheart/cli
-* scoheart-axios
-* scoheart-homework
+* @scoheart/vue
+* @scoheart/vue-router
+* @scoheart/demo
