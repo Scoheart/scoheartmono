@@ -6,4 +6,3 @@ project include:
 * @scoheart/cli
 * @scoheart/vue
 * @scoheart/vue-router
-* @scoheart/demo
